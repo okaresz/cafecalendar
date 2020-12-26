@@ -47,10 +47,6 @@
     display: flex;
   }
 
-  small.source {
-    position: absolute;
-    right: 3px; bottom: 3px;
-  }
   #share {
     display: none;
   }
@@ -63,20 +59,8 @@
     <p class="line">
     <input type="text" id="eventsource" placeholder="copy/paste the url and press fetch...">
     <button id="fetch">fetch</button><br>
-    <label>Cors ignored?<input type="checkbox" id="cors-enabled" checked="checked"></label>
-    </p>
-    <p>
-    <label for="myfile">or select local file</label>
-    <input type="file" id="myfile" name="myfile"  onchange='openFile(event)'>
     </p>
   </header>
   <div id='calendar'></div>
-  <footer class="line" id="share">
-    Hide input when sharing url:
-    <input type="checkbox">
-  </footer>
-  <small class="source">
-    <a href="https://github.com/larrybolt/online-ics-feed-viewer">source</a>
-  </small>
 </body>
 </html>
