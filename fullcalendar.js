@@ -1110,9 +1110,11 @@ var EventSource = /** @class */ (function (_super) {
         var eventDef;
         var eventDefs = [];
         for (i = 0; i < rawEventDefs.length; i++) {
-            eventDef = this.parseEventDef(rawEventDefs[i]);
-            if (eventDef) {
-                eventDefs.push(eventDef);
+            if (rawEventDefs[i]) {
+                eventDef = this.parseEventDef(rawEventDefs[i]);
+                if (eventDef) {
+                    eventDefs.push(eventDef);
+                }
             }
         }
         return eventDefs;
