@@ -46,8 +46,12 @@ $(document).ready(function () {
     },
     navLinks: true,
     editable: false,
-    minTime: "7:30:00",
-    maxTime: "21:30:00",
+    minTime: "0:00:00",
+    maxTime: "24:00:00",
+    firstDay: 1,
+    nowIndicator: true,
+    slotLabelFormat: "HH:mm",
+    eventTimeFormat: "HH:mm",
   });
   const url_feed = URIHash.get("feed");
   const url_title = URIHash.get("title");
