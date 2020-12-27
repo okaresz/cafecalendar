@@ -71,6 +71,7 @@ $(document).ready(function () {
   if (url_feed) {
     url = url_feed;
     console.log(`Load ${url}`);
+    $("#share input")[0].checked = true;
     fetch_ics_feed(url);
     $("#eventsource").val(url);
   }
