@@ -47,10 +47,6 @@
     display: flex;
   }
 
-  #share {
-    display: none;
-  }
-
 </style>
 </head>
 <body>
@@ -59,6 +55,10 @@
     <p class="line">
     <input type="text" id="eventsource" placeholder="copy/paste the url and press fetch...">
     <button id="fetch">fetch</button><br>
+    </p>
+    <p class="line" id="share">
+      Add input into url:
+      <input type="checkbox">
     </p>
   </header>
   <div id='calendar'></div>

@@ -35,6 +35,12 @@ function load_ics(ics_data) {
 
 function fetch_ics_feed(url) {
   $.get(url, (res) => load_ics(res));
+  if ($("#share input")[0].checked) {
+    URIHash.set('feed', url);
+  } else {
+    URIHash.set('feed', '');
+    window.location.hash = "";
+  }
 }
 
 $(document).ready(function () {
