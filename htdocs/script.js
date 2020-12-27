@@ -33,7 +33,7 @@ function load_ics(ics_data) {
   $("#calendar").fullCalendar("addEventSource", events);
 }
 
-function fetch_ics_feed(url, cors, show_share) {
+function fetch_ics_feed(url) {
   $.get(url, (res) => load_ics(res));
 }
 
@@ -63,13 +63,13 @@ $(document).ready(function () {
     $("h1").text(url_title);
   }
   if (url_feed) {
-    url = url_feed.replace(cors_anywhere_url, "");
+    url = url_feed;
     console.log(`Load ${url}`);
-    fetch_ics_feed(url, url_cors, false);
+    fetch_ics_feed(url);
     $("#eventsource").val(url);
   }
   $("#fetch").click(function () {
     const url = $("#eventsource").val();
-    fetch_ics_feed(url, false, true);
+    fetch_ics_feed(url);
   });
 });
