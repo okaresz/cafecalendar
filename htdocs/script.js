@@ -10,7 +10,7 @@ function fetch_ics_feed(url) {
   );
 }
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
   calendar = new FullCalendar.Calendar(
     document.getElementById('calendar'),
     {
@@ -52,17 +52,18 @@ $(document).ready(function () {
     url_title,
   });
   if (url_title) {
-    $("h1").text(url_title);
+    document.getElementsByTagName("h1")[0].textContent = url_title;
   }
   if (url_feed) {
     url = url_feed;
     console.log(`Load ${url}`);
-    $("#share input")[0].checked = true;
+    document.getElementsByTagName("input")[1].checked = true;
     fetch_ics_feed(url);
-    $("#eventsource").val(url);
+    document.getElementById("eventsource").value = url;
   }
-  $("#fetch").click(function () {
-    const url = $("#eventsource").val();
+
+  document.getElementById("fetch").onclick = function () {
+    const url = document.getElementById("eventsource").value;
     fetch_ics_feed(url);
-  });
+  };
 });
