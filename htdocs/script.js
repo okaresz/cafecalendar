@@ -39,6 +39,60 @@ document.addEventListener('DOMContentLoaded', function () {
         omitZeroMinute: false,
         meridiem: false,
         hour12: false
+      },
+      eventClick: function(info) {
+        debug_event = info;
+        document.getElementById('popup-title').textContent = info.event.title;
+
+        if (info.event.allDay) {
+          if (info.event.end.getHours() === 0 && info.event.end.getMinutes() === 0 && info.event.end.getSeconds === 0) {
+            end = info.event.end - 1;
+          } else {
+            end = info.event.end;
+          }
+          docuement.getElementById('popup-time').textContent = FullCalendar.formatRange(
+            info.event.start,
+            end,
+            {
+              year: 'numeric',
+              month: 'long',
+              day: '2-digit',
+              timeZond: 'local',
+              locale: 'en-GB'
+            }
+          );
+        } else {
+          document.getElementById('popup-time').textContent = FullCalendar.formatRange(
+            info.event.start,
+            info.event.end,
+            {
+              year: 'numeric',
+              month: 'long',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+              timeZone: 'local',
+              locale: 'en-GB'
+            }
+          );
+        }
+
+        if (info.event.extendedProps.location === null) {
+          document.getElementById('popup-location').hidden = true;
+        } else {
+          document.getElementById('popup-location').hidden = false;
+          document.getElementById('popup-location').textContent = "Location: " + info.event.extendedProps.location;
+        }
+
+        if (info.event.extendedProps.description === null) {
+          document.getElementById('popup-description').hidden = true;
+        } else {
+          document.getElementById('popup-description').hidden = false;
+          document.getElementById('popup-description').textContent = info.event.extendedProps.description;
+        }
+
+        document.getElementById('popup').hidden = false;
       }
     }
   );
@@ -65,5 +119,23 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("fetch").onclick = function () {
     const url = document.getElementById("eventsource").value;
     fetch_ics_feed(url);
-  };
+  }
+
+  document.getElementById('popup-close').onclick = function () {
+    document.getElementById('popup').hidden = true;
+  }
+
+  document.getElementById('popup').addEventListener("click", function() {
+    document.getElementById('popup').hidden = true;
+  });
+
+  document.getElementById('popup-content').addEventListener("click", function(e) {
+    e.stopPropagation();
+  });
+});
+
+document.addEventListener("keypress", function(e) {
+  if (e.key === "Escape") {
+    document.getElementById('popup').hidden = true;
+  }
 });
