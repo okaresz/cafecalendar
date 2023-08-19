@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         hour12: false
       },
       eventClick: function(info) {
+        info.jsEvent.preventDefault(); // Prevent the browser navigating to the url
+
         debug_event = info;
         document.getElementById('popup-title').textContent = info.event.title;
 
@@ -90,6 +92,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
           document.getElementById('popup-description').hidden = false;
           document.getElementById('popup-description').textContent = info.event.extendedProps.description;
+        }
+
+        if (info.event.url === null) {
+          document.getElementById('popup-url').hidden = true;
+        } else {
+          document.getElementById('popup-url').hidden = false;
+          document.getElementById('popup-url').textContent = info.event.url;
+          document.getElementById('popup-url').setAttribute('href', info.event.url);
         }
 
         document.getElementById('popup').hidden = false;
