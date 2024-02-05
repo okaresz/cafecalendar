@@ -5,7 +5,18 @@ function fetch_ics_feed(url) {
   calendar.addEventSource(
     {
       url: url,
-      format: 'ics'
+      format: 'ics',
+      failure: function(err) {
+        if (err.xhr.readyState === 4 && err.xhr.status === 0) {
+          document.getElementById('popup-title').textContent = "Error loading calendar";
+          document.getElementById('popup-time').hidden = true;
+          document.getElementById('popup-location').hidden = true;
+          document.getElementById('popup-download').hidden = true;
+          document.getElementById('popup-description').textContent = "The calendar could not be loaded.";
+          document.getElementById('popup-description').hidden = false;
+          document.getElementById('popup').hidden = false;
+        }
+      }
     }
   );
 }
