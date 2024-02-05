@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
       eventClick: function(info) {
         info.jsEvent.preventDefault(); // Prevent the browser navigating to the url
 
+        clicked_event = info.event;
+
         debug_event = info;
         document.getElementById('popup-title').textContent = info.event.title;
 
@@ -102,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
           document.getElementById('popup-url').setAttribute('href', info.event.url);
         }
 
+        document.getElementById('popup-download').hidden = false;
         document.getElementById('popup').hidden = false;
       }
     }
@@ -134,6 +137,18 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('popup-close').onclick = function () {
     document.getElementById('popup').hidden = true;
   }
+
+  document.getElementById('popup-download').onclick = function() {
+    var cal = ics();
+    cal.addEvent(
+      clicked_event.title,
+      clicked_event.extendedProps.description,
+      clicked_event.extendedProps.location,
+      clicked_event.start,
+      clicked_event.end
+    );
+    cal.download('event');
+  };
 
   document.getElementById('popup').addEventListener("click", function() {
     document.getElementById('popup').hidden = true;
