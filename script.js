@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   if (url_title) {
     document.getElementsByTagName("h1")[0].textContent = url_title;
+    document.title = url_title;
   }
   if (url_feed) {
     url = url_feed;
