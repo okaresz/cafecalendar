@@ -123,8 +123,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
-  const url_feed = URIHash.get("feed");
-  const url_title = URIHash.get("title");
+  url_feed = URIHash.get("feed");
+  url_title = URIHash.get("title");
+
+  // overwrite URI parsed values
+  url_feed = 'https://s3.eu-central-1.amazonaws.com/onefid.content.assets/8394454/4b861893-cd6d-4d47-a5b2-a63ac6fe9e8e/Connecteam_DCW_Kft__433b5291_c46a_4f94_99ca_9d49148fa34a.ics';
+  url_title = 'Karesz kávézó beosztás';
+  document.getElementById('urlForm').style.display = 'none';
+
   console.log({
     url_feed,
     url_title,

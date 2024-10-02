@@ -84,11 +84,24 @@
   a.fc-event {
     cursor:pointer;
   }
+
+  .fc-daygrid-day-frame:has(div>div>a.fc-daygrid-event) {
+    background: #d7e4f5;
+  }
+  .fc-daygrid-day-frame:has(>div>.fc-daygrid-event-harness) .fc-daygrid-day-number {
+    font-weight: bold;
+  }
+  .fc-theme-standard td {
+    border-color: #a9a5a5;
+  }
+  body h1 {
+    margin-bottom: 1em;
+  }
 </style>
 </head>
 <body>
   <h1>Online ics feed ical viewer</h1>
-  <header>
+  <header id="urlForm">
     <p class="line">
     <input type="text" id="eventsource" placeholder="copy/paste the url and press fetch...">
     <button id="fetch">fetch</button><br>

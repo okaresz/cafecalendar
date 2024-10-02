@@ -228,7 +228,7 @@ var FullCalendarICalendar = (function (exports, common, ICAL) {
     };
     function requestICal(url, successCallback, failureCallback) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
+        xhr.open('GET', 'https://corsproxy.io/?'+url, true);
         xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 400) {
                 successCallback(xhr.responseText, xhr);
@@ -237,7 +237,7 @@ var FullCalendarICalendar = (function (exports, common, ICAL) {
                 failureCallback('Request failed', xhr);
             }
         };
-        xhr.onerror = function () { return failureCallback('Request failed', xhr); };
+        xhr.onerror = function () { console.warn("resp:"+xhr.responseText); console.warn("statTxt:"+xhr.statusText); return failureCallback('Request failed', xhr); };
         xhr.send(null);
     }
     function expandICalEvents(iCalExpander, range) {
